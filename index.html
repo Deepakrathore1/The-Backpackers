@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Backpackers | Find Your Somewhere</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #f7f6f2;
+  --dark: #17241e;
+  --green: #b8d6a1;
+  --muted: #747970;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--dark);
+  font-family: 'DM Sans', sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+
+nav {
+  height: 82px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  color: white;
+}
+
+.logo {
+  font: 800 24px 'Outfit', sans-serif;
+  letter-spacing: -1px;
+}
+
+.logo span { color: var(--green); }
+
+.nav-links {
+  display: flex;
+  gap: 35px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.nav-cta {
+  border: 1px solid #ffffff80;
+  padding: 12px 22px;
+  border-radius: 30px;
+}
+
+.hero {
+  min-height: 760px;
+  height: 100vh;
+  max-height: 1000px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+  background:
+    linear-gradient(90deg, #101b17c9 0%, #101b1740 60%, #101b1710 100%),
+    linear-gradient(0deg, #101b1760, transparent 45%),
+    url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2200&q=90') center/cover;
+}
+
+.hero-content {
+  width: 86%;
+  max-width: 1300px;
+  margin: 30px auto 0;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 25px;
+}
+
+h1 {
+  font: 800 clamp(58px, 8.4vw, 116px)/.94 'Outfit', sans-serif;
+  letter-spacing: -5px;
+  max-width: 850px;
+}
+
+h1 em {
+  font-style: normal;
+  color: var(--green);
+}
+
+.hero-desc {
+  margin-top: 28px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #e1e6df;
+  max-width: 430px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 35px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 25px;
+  border-radius: 40px;
+  background: var(--green);
+  color: var(--dark);
+  font-size: 13px;
+  font-weight: 700;
+  transition: .25s;
+}
+
+.btn:hover { transform: translateY(-3px); background: white; }
+
+.text-link {
+  font-size: 13px;
+  border-bottom: 1px solid #ffffff80;
+  padding-bottom: 5px;
+}
+
+.hero-bottom {
+  position: absolute;
+  bottom: 38px;
+  left: 7%;
+  right: 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #e0e5df;
+}
+
+.scroll { display: flex; gap: 12px; align-items: center; }
+
+.scroll:before {
+  content: '';
+  height: 1px;
+  width: 40px;
+  background: var(--green);
+}
+
+section { padding: 110px 7%; }
+
+.section-label {
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #73816e;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font: 700 clamp(38px, 5vw, 65px)/1.05 'Outfit', sans-serif;
+  letter-spacing: -2px;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+}
+
+.intro p {
+  max-width: 460px;
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.destinations { background: #eeeee7; }
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 45px;
+  gap: 20px;
+}
+
+.section-head .text-link {
+  color: var(--dark);
+  border-color: #a5aaa0;
+  white-space: nowrap;
+}
+
+.trip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.trip-card {
+  position: relative;
+  height: 450px;
+  overflow: hidden;
+  border-radius: 5px;
+  color: white;
+  background: #26352d;
+}
+
+.trip-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s;
+}
+
+.trip-card:hover img { transform: scale(1.06); }
+
+.trip-card:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #101b17d9, transparent 70%);
+}
+
+.trip-info {
+  position: absolute;
+  z-index: 1;
+  bottom: 28px;
+  left: 25px;
+  right: 25px;
+}
+
+.trip-tag {
+  display: inline-block;
+  background: #ffffff26;
+  backdrop-filter: blur(10px);
+  border: 1px solid #ffffff45;
+  border-radius: 30px;
+  padding: 7px 12px;
+  font-size: 10px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.trip-info h3 {
+  font: 700 32px 'Outfit', sans-serif;
+  margin-bottom: 8px;
+}
+
+.trip-info p { font-size: 12px; color: #e1e6df; }
+
+.trip-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 22px;
+  padding-top: 17px;
+  border-top: 1px solid #ffffff55;
+  font-size: 11px;
+}
+
+.trip-meta span:last-child { color: var(--green); }
+
+.manifesto {
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 130px 10%;
+}
+
+.manifesto .section-label { color: var(--green); }
+
+.manifesto h2 {
+  font: 700 clamp(42px, 6.5vw, 82px)/1.08 'Outfit', sans-serif;
+  letter-spacing: -3px;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.manifesto h2 em { color: var(--green); font-style: normal; }
+
+.manifesto p {
+  max-width: 520px;
+  margin: 28px auto 0;
+  color: #b8c0b9;
+  line-height: 1.9;
+  font-size: 14px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 65px;
+  text-align: left;
+}
+
+.feature { border-top: 1px solid #526056; padding-top: 22px; }
+
+.feature-num { color: var(--green); font-size: 12px; }
+
+.feature h3 {
+  font: 600 22px 'Outfit', sans-serif;
+  margin: 20px 0 12px;
+}
+
+.feature p { font-size: 13px; margin: 0; }
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-template-rows: 220px 220px;
+  gap: 12px;
+  margin-top: 45px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.gallery img:first-child { grid-row: span 2; }
+
+.community {
+  background: #dce7d3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.community p {
+  margin-top: 22px;
+  line-height: 1.9;
+  color: #5d6958;
+  font-size: 14px;
+  max-width: 470px;
+}
+
+.community-image {
+  height: 440px;
+  position: relative;
+}
+
+.community-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+footer {
+  padding: 55px 7%;
+  background: #111b16;
+  color: white;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  padding-bottom: 35px;
+  border-bottom: 1px solid #ffffff25;
+}
+
+.footer-bottom {
+  padding-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: #9da79e;
+  font-size: 11px;
+}
+
+footer p { font-size: 12px; color: #aab3ab; margin-top: 8px; }
+
+@media (max-width: 800px) {
+  nav { padding: 0 6%; height: 72px; }
+  .nav-links { gap: 16px; }
+  .nav-links a:not(.nav-cta) { display: none; }
+  .hero { min-height: 720px; height: 90vh; }
+  .hero-content { width: 88%; }
+  h1 { letter-spacing: -3px; }
+  section { padding: 75px 6%; }
+  .intro, .community { grid-template-columns: 1fr; gap: 30px; }
+  .trip-grid { grid-template-columns: 1fr; }
+  .trip-card { height: 420px; }
+  .section-head { align-items: start; flex-direction: column; }
+  .manifesto { padding: 90px 7%; }
+  .features { grid-template-columns: 1fr; gap: 25px; }
+  .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 160px; }
+  .gallery img:first-child { grid-row: span 2; }
+  .community-image { height: 350px; }
+  .hero-bottom { left: 6%; right: 6%; }
+}
+
+@media (max-width: 420px) {
+  .hero-actions { align-items: start; flex-direction: column; gap: 18px; }
+  .hero-bottom { font-size: 9px; }
+  .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 130px; }
+  .footer-top, .footer-bottom { flex-direction: column; align-items: start; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#" class="logo">the<span>.</span>backpackers</a>
+  <div class="nav-links">
+    <a href="#trips">Our trips</a>
+    <a href="#about">Our story</a>
+    <a href="#community">Community</a>
+    <a href="https://wa.me/" class="nav-cta">Let's travel ↗</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Not all those who wander are lost.</div>
+    <h1>Find your<br>kind of <em>somewhere.</em></h1>
+    <p class="hero-desc">
+      For the ones who crave mountain air, unfamiliar roads,
+      spontaneous plans, and stories worth telling.
+      Your next adventure starts here.
+    </p>
+    <div class="hero-actions">
+      <a href="#trips" class="btn">Explore our trips ↗</a>
+      <a href="#about" class="text-link">A little about us</a>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <span>CURATED EXPERIENCES · UNFORGETTABLE PEOPLE</span>
+    <span class="scroll">SCROLL TO EXPLORE</span>
+  </div>
+</header>
+
+<section id="about">
+  <div class="intro">
+    <div>
+      <div class="section-label">More than a trip</div>
+      <h2 class="section-title">We don't just<br>go places.<br>We <em>feel them.</em></h2>
+    </div>
+    <p>
+      The Backpackers started with a simple idea: the best
+      journeys aren't just about where you go, but who you
+      become along the way.
+      <br><br>
+      We're a travel community built around shared experiences,
+      offbeat adventures, late-night conversations, and the
+      kind of people who turn strangers into friends.
+    </p>
+  </div>
+</section>
+
+<section class="destinations" id="trips">
+  <div class="section-head">
+    <div>
+      <div class="section-label">Your next chapter</div>
+      <h2 class="section-title">Places that<br>stay with you.</h2>
+    </div>
+    <a href="https://wa.me/" class="text-link">Find your next trip ↗</a>
+  </div>
+
+  <div class="trip-grid">
+    <a class="trip-card" href="https://wa.me/">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=85" alt="Mountain lake in the Himalayas">
+      <div class="trip-info">
+        <span class="trip-tag">MOUNTAINS · ADVENTURE</span>
+        <h3>Himachal</h3>
+        <p>Mountain mornings. Bonfire nights. No rush.</p>
+        <div class="trip-meta">
+          <span>Himalayan escapes</span><span>EXPLORE ↗</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="trip-card" href="https://wa.me/">
+      <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=85" alt="Tropical beach and turquoise sea">
+      <div class="trip-info">
+        <span class="trip-tag">BEACHES · SLOW TRAVEL</span>
+        <h3>Goa</h3>
+        <p>Salt in your hair. Nowhere to be.</p>
+        <div class="trip-meta">
+          <span>Coastal getaways</span><span>EXPLORE ↗</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="trip-card" href="https://wa.me/">
+      <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=900&q=85" alt="Himalayan valley with mountain villages">
+      <div class="trip-info">
+        <span class="trip-tag">NATURE · ROAD TRIPS</span>
+        <h3>Meghalaya</h3>
+        <p>Cloud-kissed roads and hidden worlds.</p>
+        <div class="trip-meta">
+          <span>Northeast journeys</span><span>EXPLORE ↗</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="manifesto">
+  <div class="section-label">The Backpackers way</div>
+  <h2>Come for the destination.<br>Leave with <em>your people.</em></h2>
+  <p>
+    Travel should feel less like a checklist and more like
+    a collection of moments you wish you could relive.
+    That's what we're here for.
+  </p>
+
+  <div class="features">
+    <div class="feature">
+      <span class="feature-num">01 / THE PLACES</span>
+      <h3>Beyond the usual.</h3>
+      <p>Thoughtfully planned journeys, hidden gems, and room for a little spontaneity.</p>
+    </div>
+    <div class="feature">
+      <span class="feature-num">02 / THE PEOPLE</span>
+      <h3>Strangers to stories.</h3>
+      <p>Meet curious people, share the road, and find friends in unexpected places.</p>
+    </div>
+    <div class="feature">
+      <span class="feature-num">03 / THE MOMENTS</span>
+      <h3>Worth remembering.</h3>
+      <p>Sunrise hikes, roadside chai, long conversations, and everything in between.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-label">Little moments. Big memories.</div>
+  <h2 class="section-title">Somewhere out there,<br>your story is waiting.</h2>
+
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=900&q=85" alt="Wild nature">
+    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=700&q=85" alt="Mountain landscape">
+    <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=700&q=85" alt="Lake and mountains">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=85" alt="Outdoor adventure">
+    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=85" alt="Mountain peaks">
+  </div>
+</section>
+
+<section class="community" id="community">
+  <div>
+    <div class="section-label">Your people are out there</div>
+    <h2 class="section-title">Good trips.<br>Better company.</h2>
+    <p>
+      You don't need a group of friends who are always free.
+      You just need a little curiosity and a willingness to
+      say yes.
+      <br><br>
+      Join The Backpackers community and be the first to hear
+      about upcoming adventures, travel meetups, and new
+      places worth discovering.
+    </p>
+    <a href="https://wa.me/" class="btn" style="margin-top:28px">Join the community ↗</a>
+  </div>
+
+  <div class="community-image">
+    <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1000&q=85" alt="Friends enjoying time together outdoors">
+    <div class="image-caption">BETTER TOGETHER. ALWAYS.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="#" class="logo">the<span>.</span>backpackers</a>
+      <p>Find your somewhere.</p>
+    </div>
+    <a href="https://wa.me/" class="btn">Let's plan a trip ↗</a>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 The Backpackers. Made for the journey.</span>
+    <span>GO SOMEWHERE. FEEL SOMETHING.</span>
+  </div>
+</footer>
+
+</body>
+</html>
